@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<header>
+		<title> Contribute to the collection </title>
+		<link rel = "stylesheet" href = "{{url_for('static', filename = 'submitpg.css')}}" type = "text/css">
+	</header>
+
+	<body>
+		<p id = "subContent"> Add a hero to the database! Your contribution will be very valuable. </p>
+
+		<form method = "POST" action = "/registerhero" id = "subForm">
+		<p id = "subContent"><label >Name of the Superhero : </label> <input type = "text" name = "name" />  <br></p>
+		<p id = "subContent"><label id = "subContent">Age of the Superhero : </label> <input type = "text" name = "age" /> <br></p>
+		<p id = "subContent"><label id = "subContent">Height of the Superhero : </label> <input type = "text" name = "height"/> <br></p>
+		<p id = "subContent"><label id = "subContent">Weight of the Superhero : </label> <input type = "text" name = "weight" /> <br></p>
+		<p id = "subContent"><input type = "submit" name = "submit2" value = "Submit" id = "subbtn2"/></p>
+
+		</form>
+
+
+
+
+
+	</body>
+</html>

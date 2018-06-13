@@ -1,0 +1,32 @@
+ul li {
+	list-style-type : none;
+}
+
+body	{
+	background-image : url("superheroes.jpg");
+	background-color: purple;
+}
+
+#pgTitle	{
+	color : white;
+	font-family: 'Anton', sans-serif;
+	font-size: 72px;
+}
+
+#pgContent	{
+	color : white;
+	font-family: 'Fira Sans', sans-serif;
+	font-size: 40px;
+	text-align : center;
+}
+
+#searchForm	{
+	text-align : center;
+}
+
+#subbtn	{
+	background-color : #e5e5e5;
+	border-radius : 4px;
+	font-family : 'Fira Sans', sans-serif;
+
+}

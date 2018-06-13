@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<header>
+		<title> Superheroes </title>
+		<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+		<link rel = "stylesheet" href = "{{url_for('static', filename = 'welcomepg.css')}}" type ="text/css">
+	</header>
+
+	<body>
+
+		<div class = "pgContent">
+			<label>Name of superhero:</label><p>{{name}}</p>
+			<label>Age of superhero:</label><p>{{age}}</p>
+			<label>Height of superhero:</label><p>{{height}}</p>
+			<label>Weight of superhero:</label><p>{{weight}}</p>
+		</div>
+
+	</body>
+
+</html>

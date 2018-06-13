@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Superheroes </title>
+		<meta name = "viewport" content = "width=device-width, initial-scale=1" charset="utf-8">
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+		<link rel = "stylesheet" href = "{{url_for('static', filename = 'welcomepg.css')}}" type ="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+
+
+		<!-- Required Scrips -->
+		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstraps -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+
+		<p id = "pgTitle"> Superheroes </p>
+
+		<p id = "pgContent"> Welcome to the network where you can find some information about every superhero you can think of! </p>
+
+		<p id = "pgContent"> You can also <a href ="/submit"> Submit </a> information about a superhero if you want. </p>
+
+		<form method = "POST" action = "/search" id = "searchForm">
+			<label id = "pgContent">Search for a superhero </label><input type = "text" name = "searchhero"/>
+			<input type = "submit" value = "Search" id = "subbtn"/>
+		</form>
+
+	</body>
+
+</html>
