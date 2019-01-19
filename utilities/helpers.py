@@ -1,3 +1,5 @@
+import codecs
+import csv
 import json
 from flask import (
     Flask,
@@ -48,6 +50,43 @@ def respond(data, message=None, http_status=200,  pagination=None):
                 'errors': data,
                 'description': message
             }
+
+
+def get_rows_from_csv(f_path, header=False, delimiter=',',
+                      int_fields=[], empty_check_col=None, quoting=False):
+    """
+     TODO: fix the docstring
+    :param f_path:
+    f_path - Represents the relative path of the CSV file
+    header - Set to True if the first row is to be skipped.
+    delimiter - CSV delimiter can be `,`, `;`, etc.
+    int_fields - List of columns that has to be converted to integer
+        - Empty values are returned as None.
+    """
+
+    with codecs.open(f_path, encoding='utf-8', errors='ignore') as f:
+        f.seek(0)
+        reader = csv.reader(f, delimiter=delimiter)
+        if quoting is True:
+            reader = csv.reader(f, delimiter=delimiter,  quotechar='"',
+                                quoting=csv.QUOTE_ALL, skipinitialspace=True)
+
+        # Skip the header if specified
+        if header:
+            next(reader)
+
+        rows = []
+        for row in reader:
+            # Skip row if the required check is empty
+            if empty_check_col is not None:
+                if row[empty_check_col] == '':
+                    continue
+
+            for i, col in enumerate(row):
+                row[i] = col.strip()
+            rows.append(row)
+
+        return rows
 
 
 class ApiFlask(Flask):
