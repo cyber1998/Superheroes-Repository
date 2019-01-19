@@ -161,33 +161,6 @@ class BaseModel(db.Model):
         return {
             'id': self.id_,
             'status': self.status,
-            'created_at': serialize_datetime(self.created_at),
+            'created_at': self.created_at.isoformat(),
         }
 
-    @classmethod
-    def load_from_csv(cls, f_path, column_index, header=True,
-                      empty_check_col=1, repr_col=1):
-        """
-        This function takes a relative path of a csv file and populates
-        the database with the contents of the csv file.
-        :param str f_path: The relative path to the file
-        :param dict column_index: Model field_name, CSV index mapper
-        :param bool header: Flag to determine whether to skip first line
-            of CSV
-        :param int empty_check_col: The column count if empty marks last
-            line of CSV
-        :param int repr_col: The value to be printed for each row in log
-            messages
-        :return bool: True
-        """
-
-        rows = get_rows_from_csv(f_path, header=header,
-                                 empty_check_col=empty_check_col)
-        for row in rows:
-            logger.debug('Loading {} `{}` from CSV..'.format(cls.__name__,
-                                                             row[repr_col]))
-            data = {}
-            for k, v in column_index.items():
-                data[k] = row[v]
-            db.session.add(cls(data))
-        return True

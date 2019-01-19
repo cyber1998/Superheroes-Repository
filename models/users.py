@@ -69,7 +69,8 @@ class User(BaseModel):
         payload['favourite'] = self.favourite,
         payload['profile_picture'] = self.profile_picture
 
-        return {**self.base_details, **payload}
+        base_details = self.get_base_details()
+        return {**base_details, **payload}
 
     @staticmethod
     def get_all_details():
@@ -110,6 +111,7 @@ class User(BaseModel):
             }])
 
         db.session.commit()
+        return self.get_details()
 
     @staticmethod
     def delete_details(id_):

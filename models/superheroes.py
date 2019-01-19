@@ -33,10 +33,11 @@ class Superhero(BaseModel):
                         setattr(self, key, True)
                     else:
                         setattr(self, key, False)
+                    continue
                 setattr(self, key, value)
 
             if 'main_powers' in payload:
-                self.main_powers = payload['main_powers'].strip().split(',')
+                self.main_powers = payload['main_powers']
 
         except IntegrityError:
 
@@ -63,11 +64,12 @@ class Superhero(BaseModel):
         payload['special_power'] = self.special_power
         payload['fathers_name'] = self.fathers_name
         payload['mothers_name'] = self.mothers_name
-        payload['alive'] = self.alive
+        payload['alive'] = 'Yes' if self.alive else 'No'
         payload['race'] = self.race
         payload['main_powers'] = self.main_powers
 
-        return {**self.base_details, **payload}
+        base_details = self.get_base_details()
+        return {**base_details, **payload}
 
     @staticmethod
     def get_all_details():
@@ -101,10 +103,11 @@ class Superhero(BaseModel):
                         setattr(self, key, True)
                     else:
                         setattr(self, key, False)
+                    continue
                 setattr(self, key, value)
 
             if 'main_powers' in payload:
-                self.main_powers = payload['main_powers'].strip().split(',')
+                self.main_powers = payload['main_powers']
 
         except IntegrityError:
 
@@ -114,6 +117,7 @@ class Superhero(BaseModel):
             }])
 
         db.session.commit()
+        return self.get_details()
 
     @staticmethod
     def delete_details(id_):
@@ -126,7 +130,7 @@ class Superhero(BaseModel):
         """
         superhero = Superhero.get_one(id_)
         if superhero:
-            superhero.soft_delete()
+            superhero.soft_delete(superhero.id_)
             db.session.commit()
 
         return None
